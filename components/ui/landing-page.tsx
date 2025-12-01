@@ -219,17 +219,17 @@ export function Vaulten() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 overflow-hidden px-4 md:px-8 lg:px-12">
-          <div className="w-full border border-muted rounded-3xl bg-gradient-to-br from-background to-muted/30 mx-auto max-w-7xl">
-            <div className="grid gap-3 lg:grid-cols-[1fr_400px] lg:gap-3 xl:grid-cols-[1fr_600px]">
+        <section className="w-full py-12 md:py-20 lg:py-32 xl:py-40 overflow-hidden px-4 md:px-8 lg:px-12">
+          <div className="w-full rounded-3xl bg-gradient-to-br from-background to-muted/30 mx-auto max-w-7xl">
+            <div className="grid gap-6 lg:grid-cols-[1fr_350px] lg:gap-8 xl:grid-cols-[1fr_500px] px-4 md:px-8 py-8 md:py-12">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeIn}
-                className="flex flex-col justify-center space-y-4 py-10"
+                className="flex flex-col justify-center space-y-6"
               >
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -243,7 +243,7 @@ export function Vaulten() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                    className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none leading-tight"
                   >
                     Governance. Security. Compliance.{" "}
                     <span className="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
@@ -254,7 +254,7 @@ export function Vaulten() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.4 }}
-                    className="max-w-[600px] text-muted-foreground md:text-xl"
+                    className="max-w-[600px] text-muted-foreground md:text-lg leading-relaxed"
                   >
                     We help organisations build resilient, audit-ready systems aligned with modern regulatory, privacy, and quality frameworks.
                   </motion.p>
@@ -263,7 +263,7 @@ export function Vaulten() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.6 }}
-                  className="flex flex-col gap-3 sm:flex-row"
+                  className="flex flex-col gap-4 sm:flex-row pt-2"
                 >
                   <Button size="lg" className="rounded-3xl group">
                     Book a Strategy Call
@@ -301,13 +301,13 @@ export function Vaulten() {
         </section>
 
         {/* Who We Serve */}
-        <section id="whowework" className="w-full py-12 md:py-16 lg:py-20 px-4 md:px-8 lg:px-12">
+        <section id="whowework" className="w-full py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="border border-muted rounded-3xl bg-muted/20 mx-auto max-w-7xl"
+            className="rounded-3xl bg-muted/20 mx-auto max-w-7xl"
           >
             <div className="flex flex-col items-center justify-center space-y-4 text-center py-10">
               <div className="space-y-3">
@@ -342,7 +342,7 @@ export function Vaulten() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mx-auto grid grid-cols-2 items-center gap-3 py-8 px-6 md:grid-cols-3 lg:grid-cols-3"
+              className="mx-auto grid grid-cols-2 items-center gap-4 py-8 px-6 md:gap-6 md:grid-cols-3 lg:grid-cols-3 lg:gap-6"
             >
               {[
                 { icon: <GraduationCap className="h-8 w-8 text-primary" />, label: "Higher Education Institutions" },
@@ -358,9 +358,9 @@ export function Vaulten() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="flex flex-col items-center justify-center text-center"
                 >
-                  <div className="rounded-3xl border p-6 bg-background/80 hover:shadow-md transition-all w-full">
+                  <div className="rounded-3xl p-4 md:p-6 bg-background/80 hover:bg-background/90 transition-all w-full">
                     <div className="flex justify-center mb-3">{sector.icon}</div>
-                    <p className="text-sm font-medium">{sector.label}</p>
+                    <p className="text-sm md:text-base font-medium">{sector.label}</p>
                   </div>
                 </motion.div>
               ))}
@@ -369,16 +369,16 @@ export function Vaulten() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="w-full py-12 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
+        <section id="services" className="w-full py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="border border-muted rounded-3xl mx-auto max-w-7xl"
+            className="rounded-3xl mx-auto max-w-7xl"
           >
-            <div className="flex flex-col items-center justify-center space-y-4 text-center py-10">
-              <div className="space-y-3">
+            <div className="flex flex-col items-center justify-center space-y-6 text-center py-12">
+              <div className="space-y-4">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -399,7 +399,7 @@ export function Vaulten() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="mx-auto max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
+                  className="mx-auto max-w-[900px] text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed"
                 >
                   At Vaulten, we bridge the gap between policies and real-world implementation. Our consulting services cover end-to-end governance, risk, compliance, cybersecurity, and institutional excellence.
                 </motion.p>
@@ -410,7 +410,7 @@ export function Vaulten() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mx-auto w-full px-4 md:px-6 grid max-w-5xl items-center gap-3 py-12 md:grid-cols-2 lg:grid-cols-3"
+              className="mx-auto w-full px-4 md:px-6 grid max-w-5xl items-center gap-4 py-12 md:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-6"
             >
               {[
                 {
@@ -452,7 +452,7 @@ export function Vaulten() {
                   key={index}
                   variants={itemFadeIn}
                   whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                  className="group relative overflow-hidden rounded-3xl border p-6 shadow-sm transition-all hover:shadow-md bg-background/80"
+                  className="group relative overflow-hidden rounded-3xl p-6 transition-all bg-background/80"
                 >
                   <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all duration-300"></div>
                   <div className="relative space-y-3">
@@ -475,16 +475,16 @@ export function Vaulten() {
         </section>
 
         {/* Portfolio/Case Studies Bento Grid */}
-        <section id="casestudies" className="w-full py-12 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
+        <section id="casestudies" className="w-full py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="border border-muted rounded-3xl bg-muted/10 mx-auto max-w-7xl"
+            className="rounded-3xl bg-muted/10 mx-auto max-w-7xl"
           >
-            <div className="flex flex-col items-center justify-center space-y-4 text-center py-10">
-              <div className="space-y-3">
+            <div className="flex flex-col items-center justify-center space-y-6 text-center py-12">
+              <div className="space-y-4">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -505,7 +505,7 @@ export function Vaulten() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="mx-auto max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
+                  className="mx-auto max-w-[900px] text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed"
                 >
                   Real-world governance and compliance transformations we've delivered
                 </motion.p>
@@ -516,7 +516,7 @@ export function Vaulten() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mx-auto w-full px-4 md:px-6 grid max-w-7xl gap-3 py-12 md:grid-cols-4 md:grid-rows-2 lg:gap-3"
+              className="mx-auto w-full px-4 md:px-6 grid max-w-7xl gap-4 py-12 md:gap-6 md:grid-cols-4 md:grid-rows-2 lg:gap-6"
             >
               {/* Bento Grid Items */}
               <motion.div
@@ -642,13 +642,13 @@ export function Vaulten() {
         </section>
 
         {/* Why Vaulten Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
+        <section className="w-full py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="border border-muted rounded-3xl bg-muted/20 mx-auto max-w-7xl"
+            className="rounded-3xl bg-muted/20 mx-auto max-w-7xl"
           >
             <div className="flex flex-col items-center justify-center space-y-4 text-center py-10">
               <div className="space-y-3">
@@ -727,30 +727,30 @@ export function Vaulten() {
         </section>
 
         {/* About/Team Section */}
-        <section id="about" className="w-full py-12 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
+        <section id="about" className="w-full py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="border border-muted rounded-3xl mx-auto max-w-7xl"
+            className="rounded-3xl mx-auto max-w-7xl"
           >
-            <div className="grid gap-3 lg:grid-cols-2 lg:gap-3">
+            <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
-                className="space-y-4 p-6"
+                className="space-y-6 p-6"
               >
                 <div className="inline-block rounded-3xl bg-muted px-3 py-1 text-sm">About Us</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">Who We Are</h2>
-                <p className="text-muted-foreground md:text-xl/relaxed">
+                <p className="text-muted-foreground md:text-lg/relaxed">
                   Vaulten is a governance, security, and compliance consulting firm helping organisations build robust, audit-ready systems that stand the test of regulatory scrutiny.
                 </p>
-                <p className="text-muted-foreground md:text-xl/relaxed">
+                <p className="text-muted-foreground md:text-lg/relaxed">
                   We combine deep domain expertise with modern, practical frameworks that work in the real-world environments our clients operate in. For us, compliance isn't just about documentation — it's about embedding discipline and governance into the DNA of an organisation.
                 </p>
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <div className="flex flex-col gap-3 sm:flex-row pt-2">
                   <Button variant="outline" size="lg" className="rounded-3xl">
                     Meet the Founder
                   </Button>
@@ -762,9 +762,9 @@ export function Vaulten() {
                 transition={{ duration: 0.6 }}
                 className="flex items-center justify-center p-6"
               >
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <h3 className="text-2xl font-bold">Our Philosophy</h3>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {["Simple", "Sustainable", "Actionable", "Integrated", "Outcome-driven"].map((value, i) => (
                       <motion.div
                         key={i}
@@ -787,16 +787,16 @@ export function Vaulten() {
         </section>
 
         {/* Testimonials */}
-        <section className="w-full py-12 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
+        <section className="w-full py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="border border-muted rounded-3xl bg-muted/20 mx-auto max-w-7xl"
+            className="rounded-3xl bg-muted/20 mx-auto max-w-7xl"
           >
-            <div className="flex flex-col items-center justify-center space-y-4 text-center py-10">
-              <div className="space-y-3">
+            <div className="flex flex-col items-center justify-center space-y-6 text-center py-12">
+              <div className="space-y-4">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -817,7 +817,7 @@ export function Vaulten() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="mx-auto max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
+                  className="mx-auto max-w-[900px] text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed"
                 >
                   Hear from organisations we've helped strengthen their governance and compliance systems
                 </motion.p>
@@ -828,7 +828,7 @@ export function Vaulten() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mx-auto w-full px-4 md:px-6 grid max-w-5xl gap-3 py-12 lg:grid-cols-2"
+              className="mx-auto w-full px-4 md:px-6 grid max-w-5xl gap-4 py-12 md:gap-6 lg:grid-cols-2"
             >
               {[
                 {
@@ -860,7 +860,7 @@ export function Vaulten() {
                   key={index}
                   variants={itemFadeIn}
                   whileHover={{ y: -10 }}
-                  className="flex flex-col justify-between rounded-3xl border bg-background p-6 shadow-sm"
+                  className="flex flex-col justify-between rounded-3xl bg-background p-6"
                 >
                   <div>
                     <div className="flex gap-0.5 text-yellow-500">
@@ -894,26 +894,26 @@ export function Vaulten() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
+        <section id="contact" className="w-full py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="grid items-center gap-3 lg:grid-cols-2 border border-muted rounded-3xl mx-auto max-w-7xl"
+            className="grid items-center gap-4 lg:gap-6 lg:grid-cols-2 rounded-3xl mx-auto max-w-7xl"
           >
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-3 p-6"
+              className="space-y-6 p-6"
             >
               <div className="inline-block rounded-3xl bg-muted px-3 py-1 text-sm">Contact</div>
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">Ready to Strengthen Your Organisation?</h2>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[600px] text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
                 Get in touch to discuss how we can help you build resilient, audit-ready governance systems aligned with your regulatory and quality frameworks.
               </p>
-              <div className="mt-8 space-y-4">
+              <div className="mt-8 space-y-5">
                 <motion.div whileHover={{ x: 5 }} className="flex items-start gap-3">
                   <div className="rounded-3xl bg-muted p-2">
                     <Mail className="h-5 w-5 text-primary" />
@@ -956,14 +956,14 @@ export function Vaulten() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="rounded-3xl border bg-background p-6 shadow-sm"
+              className="rounded-3xl bg-background p-6"
             >
               <h3 className="text-xl font-bold">Send Us a Message</h3>
               <p className="text-sm text-muted-foreground">
                 Fill out the form below and we'll get back to you shortly.
               </p>
-              <form className="mt-6 space-y-3">
-                <div className="grid gap-3 sm:grid-cols-2">
+              <form className="mt-6 space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <label
                       htmlFor="first-name"
@@ -1001,7 +1001,7 @@ export function Vaulten() {
                   </label>
                   <Textarea id="message" placeholder="Enter your message" className="min-h-[120px] rounded-3xl" />
                 </div>
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="pt-2">
                   <Button type="submit" className="w-full rounded-3xl">
                     Send Message
                   </Button>

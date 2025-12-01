@@ -68,6 +68,9 @@ export function Vaulten() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState<number | null>(null)
+  const [showAllCaseStudies, setShowAllCaseStudies] = useState(false)
+  const [showFounderModal, setShowFounderModal] = useState(false)
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
@@ -77,8 +80,8 @@ export function Vaulten() {
   const handleDownloadCapabilityDeck = () => {
     // Create a link to the capability deck document
     const link = document.createElement('a')
-    link.href = '/documents/capbility-deck.docx' // Path to your DOCX file in public folder
-    link.download = 'Vaulten-Capability-Deck.docx'
+    link.href = '/documents/Capbility Deck.pdf' // Path to your PDF file in public folder
+    link.download = 'Vaulten-Capability-Deck.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -96,6 +99,39 @@ export function Vaulten() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
+
+  const caseStudies = [
+    {
+      id: 1,
+      title: "Multi-Institution Integrated Quality System – CDE Group",
+      subtitle: "(JAGSoM, IFIM, Vijaybhoomi University)",
+      content: "Vaulten Advisory designed and deployed a fully integrated management system combining ISO 21001, NAAC, NIRF, and AACSB principles.\n\nDelivered 70+ baselined processes, governance committees, executive dashboards, student lifecycle improvements, and institutional risk registers.\n\nEnabled the leadership to shift from fragmented operations to a unified governance model, improving audit readiness and institutional performance.",
+    },
+    {
+      id: 2,
+      title: "HITRUST CSF Implementation – KanTime Health",
+      subtitle: "(US Healthcare SaaS)",
+      content: "Implemented HITRUST CSF v11.5.2 with operational controls for access management, system security, evidence management, and VAPT readiness.\n\nDeveloped professional, audit-ready SOPs, incident logs, evidence packs, and compliance dashboards.\n\nEnabled the client's security team to present a clear, structured compliance posture to US regulators and auditor teams.",
+    },
+    {
+      id: 3,
+      title: "ISO 27001/27701 Implementation – IT & SaaS Companies",
+      subtitle: "(India + Middle East)",
+      content: "Supported multiple clients in achieving full ISMS/PIMS readiness including documentation, risk assessment, asset inventory, access control, vendor due diligence, and internal audit.\n\nDesigned cloud and on-prem hardening checklists, IAM policies, and incident response structures.\n\nImproved security posture while reducing audit effort through automation roadmaps and evidence structuring.",
+    },
+    {
+      id: 4,
+      title: "Admissions & Placements Transformation",
+      subtitle: "(Leading Business School in India)",
+      content: "Revamped the entire admissions and placements process through surveys, risk mapping, student engagement frameworks, and automated compliance mechanisms.\n\nIntroduced motivation and barriers analysis, 30-day readiness plans, and transparent dashboards.\n\nEnabled a shift from low participation to structured, data-driven placement outcomes.",
+    },
+    {
+      id: 5,
+      title: "Organizational Process Reengineering",
+      subtitle: "(EdTech & Professional Training Company)",
+      content: "Streamlined operations across marketing, admissions, academic delivery, and student support.\n\nCreated SOPs, RACI matrices, and risk-controlled workflows integrated with CRM/ERP systems.\n\nDelivered 30–45% reduction in process leakage, improved student experience, and better tracking of outcomes.",
+    },
+  ]
 
   if (!isMounted) {
     return null
@@ -470,14 +506,6 @@ export function Vaulten() {
                     <h3 className="text-xl font-bold">{service.title}</h3>
                     <p className="text-muted-foreground">{service.description}</p>
                   </div>
-                  <div className="mt-4 flex items-center justify-between">
-                    <Link href="#" className="text-sm font-medium text-primary underline-offset-4 hover:underline">
-                      Learn more
-                    </Link>
-                    <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                      <ArrowRight className="h-4 w-4 text-primary" />
-                    </motion.div>
-                  </div>
                 </motion.div>
               ))}
             </motion.div>
@@ -533,7 +561,8 @@ export function Vaulten() {
                 variants={itemFadeIn}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden rounded-3xl md:col-span-2 md:row-span-2 h-[400px] md:h-auto"
+                className="group relative overflow-hidden rounded-3xl md:col-span-2 md:row-span-2 h-[400px] md:h-auto cursor-pointer"
+                onClick={() => setSelectedCaseStudy(0)}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/50"></div>
                 <Image
@@ -555,6 +584,7 @@ export function Vaulten() {
                       variant="outline"
                       size="sm"
                       className="rounded-3xl bg-white/20 backdrop-blur-sm border-white/40 text-white hover:bg-white/30"
+                      onClick={() => setSelectedCaseStudy(0)}
                     >
                       View Case Study <ArrowUpRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -565,7 +595,8 @@ export function Vaulten() {
                 variants={itemFadeIn}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden rounded-3xl h-[200px]"
+                className="group relative overflow-hidden rounded-3xl h-[200px] cursor-pointer"
+                onClick={() => setSelectedCaseStudy(1)}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/50"></div>
                 <Image
@@ -575,68 +606,71 @@ export function Vaulten() {
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 blur-[2px] group-hover:blur-0"
                 />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 text-white drop-shadow-lg">
-                  <h3 className="text-xl font-bold drop-shadow-md">DPDP Readiness</h3>
-                  <p className="text-sm drop-shadow-md">Complete privacy framework for software company</p>
+                  <h3 className="text-xl font-bold drop-shadow-md">HITRUST CSF Implementation</h3>
+                  <p className="text-sm drop-shadow-md">Security framework for healthcare SaaS</p>
                 </div>
               </motion.div>
               <motion.div
                 variants={itemFadeIn}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden rounded-3xl h-[200px]"
+                className="group relative overflow-hidden rounded-3xl h-[200px] cursor-pointer"
+                onClick={() => setSelectedCaseStudy(2)}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/50"></div>
                 <Image
                   src="/images/cs-accreditation.png"
-                  alt="NAAC Accreditation"
+                  alt="ISO 27001 Implementation"
                   fill
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 blur-[2px] group-hover:blur-0"
                 />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 text-white drop-shadow-lg">
-                  <h3 className="text-xl font-bold drop-shadow-md">NAAC Accreditation</h3>
-                  <p className="text-sm drop-shadow-md">Multi-campus institution governance support</p>
+                  <h3 className="text-xl font-bold drop-shadow-md">ISO 27001/27701 Implementation</h3>
+                  <p className="text-sm drop-shadow-md">ISMS/PIMS for IT & SaaS companies</p>
                 </div>
               </motion.div>
               <motion.div
                 variants={itemFadeIn}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden rounded-3xl h-[200px]"
+                className="group relative overflow-hidden rounded-3xl h-[200px] cursor-pointer"
+                onClick={() => setSelectedCaseStudy(3)}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/50"></div>
                 <Image
                   src="/images/cs-healthcare.png"
-                  alt="ISO 27001 Certification"
+                  alt="Admissions & Placements Transformation"
                   fill
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 blur-[2px] group-hover:blur-0"
                 />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 text-white drop-shadow-lg">
-                  <h3 className="text-xl font-bold drop-shadow-md">ISO 27001 Certification</h3>
-                  <p className="text-sm drop-shadow-md">Information security framework for healthcare</p>
+                  <h3 className="text-xl font-bold drop-shadow-md">Admissions & Placements Transformation</h3>
+                  <p className="text-sm drop-shadow-md">Business school process optimization</p>
                 </div>
               </motion.div>
               <motion.div
                 variants={itemFadeIn}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden rounded-3xl md:col-span-2 h-[200px]"
+                className="group relative overflow-hidden rounded-3xl md:col-span-2 h-[200px] cursor-pointer"
+                onClick={() => setSelectedCaseStudy(4)}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/50"></div>
                 <Image
                   src="/images/cs-fintech.png"
-                  alt="Risk & Compliance Program"
+                  alt="Organizational Process Reengineering"
                   fill
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 blur-[2px] group-hover:blur-0"
                 />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 text-white drop-shadow-lg">
-                  <h3 className="text-xl font-bold drop-shadow-md">Risk & Compliance Program</h3>
-                  <p className="text-sm drop-shadow-md">Integrated governance for fintech organization</p>
+                  <h3 className="text-xl font-bold drop-shadow-md">Organizational Process Reengineering</h3>
+                  <p className="text-sm drop-shadow-md">EdTech & professional training transformation</p>
                 </div>
               </motion.div>
             </motion.div>
             <div className="flex justify-center pb-10">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="rounded-3xl group">
+                <Button size="lg" className="rounded-3xl group" onClick={() => setShowAllCaseStudies(true)}>
                   View All Case Studies
                   <motion.span
                     initial={{ x: 0 }}
@@ -761,7 +795,7 @@ export function Vaulten() {
                   We combine deep domain expertise with modern, practical frameworks that work in the real-world environments our clients operate in. For us, compliance isn't just about documentation — it's about embedding discipline and governance into the DNA of an organisation.
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row pt-2">
-                  <Button variant="outline" size="lg" className="rounded-3xl">
+                  <Button variant="outline" size="lg" className="rounded-3xl" onClick={() => setShowFounderModal(true)}>
                     Meet the Founder
                   </Button>
                 </div>
@@ -933,10 +967,7 @@ export function Vaulten() {
               </div>
               <div className="mt-8 flex space-x-3">
                 {[
-                  { icon: <Instagram className="h-5 w-5" />, label: "Instagram" },
-                  { icon: <Twitter className="h-5 w-5" />, label: "Twitter" },
                   { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn" },
-                  { icon: <Facebook className="h-5 w-5" />, label: "Facebook" },
                 ].map((social, index) => (
                   <motion.div key={index} whileHover={{ y: -5, scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <Link
@@ -1009,6 +1040,242 @@ export function Vaulten() {
           </motion.div>
         </section>
       </main>
+
+      {/* Case Study Modal */}
+      {selectedCaseStudy !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setSelectedCaseStudy(null)}
+          className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-background rounded-3xl max-w-2xl max-h-[90vh] overflow-y-auto w-full"
+          >
+            <div className="p-6 md:p-10 space-y-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                    Case Study {caseStudies[selectedCaseStudy].id}: {caseStudies[selectedCaseStudy].title}
+                  </h2>
+                  <p className="text-muted-foreground text-sm md:text-base">{caseStudies[selectedCaseStudy].subtitle}</p>
+                </div>
+                <button
+                  onClick={() => setSelectedCaseStudy(null)}
+                  className="flex-shrink-0 p-2 hover:bg-muted rounded-full transition-colors"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="border-t pt-6">
+                <p className="text-muted-foreground whitespace-pre-line leading-relaxed">
+                  {caseStudies[selectedCaseStudy].content}
+                </p>
+              </div>
+              <div className="flex gap-3 pt-4">
+                <Button className="rounded-3xl" onClick={() => setSelectedCaseStudy(null)}>
+                  Close
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* All Case Studies Modal */}
+      {showAllCaseStudies && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setShowAllCaseStudies(false)}
+          className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-background rounded-3xl max-w-4xl max-h-[90vh] overflow-y-auto w-full"
+          >
+            <div className="p-6 md:p-10">
+              <div className="flex items-start justify-between gap-4 mb-6">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+                    All Case Studies
+                  </h2>
+                  <p className="text-muted-foreground mt-1">Real-world governance and compliance transformations</p>
+                </div>
+                <button
+                  onClick={() => setShowAllCaseStudies(false)}
+                  className="flex-shrink-0 p-2 hover:bg-muted rounded-full transition-colors"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="space-y-4">
+                {caseStudies.map((study, index) => (
+                  <motion.div
+                    key={study.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => {
+                      setShowAllCaseStudies(false)
+                      setSelectedCaseStudy(index)
+                    }}
+                    className="p-4 md:p-6 rounded-2xl bg-muted/50 hover:bg-muted cursor-pointer transition-colors group"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">
+                            Case Study {study.id}
+                          </span>
+                        </div>
+                        <h3 className="text-lg md:text-xl font-bold group-hover:text-primary transition-colors">
+                          {study.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">{study.subtitle}</p>
+                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+                          {study.content.split('\n\n')[0]}
+                        </p>
+                      </div>
+                      <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              <div className="flex justify-center pt-6">
+                <Button className="rounded-3xl" onClick={() => setShowAllCaseStudies(false)}>
+                  Close
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Founder Modal */}
+      {showFounderModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setShowFounderModal(false)}
+          className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-background rounded-3xl max-w-3xl max-h-[90vh] overflow-y-auto w-full"
+          >
+            <div className="p-6 md:p-10">
+              <div className="flex items-start justify-between gap-4 mb-6">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+                    Meet the Founder
+                  </h2>
+                  <p className="text-muted-foreground mt-1">Dr. S Fayaz</p>
+                </div>
+                <button
+                  onClick={() => setShowFounderModal(false)}
+                  className="flex-shrink-0 p-2 hover:bg-muted rounded-full transition-colors"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              
+              <div className="space-y-6">
+                <p className="text-muted-foreground leading-relaxed">
+                  <span className="font-semibold text-foreground">Dr. S Fayaz</span> is the Founder & Principal Consultant at Vaulten Advisory, a strategic consulting firm specializing in Integrated Management Systems, Information Security, Educational Governance, and Organizational Excellence.
+                </p>
+                
+                <p className="text-muted-foreground leading-relaxed">
+                  With <span className="font-semibold text-foreground">20+ years</span> of cross-sector consulting experience across higher education, IT/ITES, HealthTech, and global service organizations, Dr. Fayaz is known for transforming complex governance requirements into simple, scalable, and audit-ready systems.
+                </p>
+
+                <div>
+                  <h3 className="font-bold text-lg mb-3">His expertise spans:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>ISO 21001 (EOMS) Implementation & Governance</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>ISO 27001 (ISMS) & ISO 27701 (PIMS)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>HITRUST CSF for healthcare & SaaS firms</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>NAAC, NIRF, AACSB alignment through structured processes</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Risk Management Frameworks & Organizational Dashboards</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Process Re-engineering for Admissions, Placements, Academics, HR & IT</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-lg mb-3">Dr. Fayaz is recognized for his ability to convert fragmented operations into integrated, high-performance systems through:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <Award className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Clear processes & RACI structures</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Award className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Evidence-based governance</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Award className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Automation roadmaps</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Award className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Quality councils & steering committees</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Award className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Risk & compliance frameworks</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Award className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Institutional and organizational restructuring</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="text-muted-foreground leading-relaxed">
+                  He has successfully consulted <span className="font-semibold text-foreground">30+ organizations</span> across India, UAE, and Southeast Asia, and is known for his strategic clarity, execution discipline, and people-centric approach.
+                </p>
+              </div>
+
+              <div className="flex justify-center pt-6">
+                <Button className="rounded-3xl" onClick={() => setShowFounderModal(false)}>
+                  Close
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   )
 }
